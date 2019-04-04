@@ -1,0 +1,29 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	intel
+#open	2019-04-04-12-02-14
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	seen.indicator	seen.indicator_type	seen.where	seen.node	matched	sources	fuid	file_mime_type	file_desc
+#types	time	string	addr	port	addr	port	string	enum	enum	string	set[enum]	set[string]	string	string	string
+1.000011	-	-	-	-	-	1.0.0.0	Intel::ADDR	SOMEWHERE	bro	Intel::ADDR	source1	-	-	-
+1.000011	-	-	-	-	-	2.0.0.0	Intel::ADDR	SOMEWHERE	bro	Intel::ADDR	source1	-	-	-
+#close	2019-04-04-12-02-14
+>> Run 0 (1.0):
+>> Run 1 (1.000011):
+Trigger: 1.0.0.0
+Trigger: 2.0.0.0
+Match: 1.0.0.0 Start time: 1.0
+Match: 2.0.0.0 Start time: 1.0
+>> Run 2 (2.000011):
+>> Run 3 (3.000011):
+Item expired: [indicator=1.0.0.0, indicator_type=Intel::ADDR, meta=[source=source1, desc=this host is bad, url=<uninitialized>, expire=2.0 secs, start_time=1.0]]
+>> Run 4 (4.000011):
+>> Run 5 (5.000011):
+Item expired: [indicator=2.0.0.0, indicator_type=Intel::ADDR, meta=[source=source1, desc=this host is bad, url=<uninitialized>, expire=4.0 secs, start_time=1.0]]
+>> Run 6 (6.000011):
+>> Run 7 (7.000011):
+>> Run 8 (8.000011):
+Trigger: 1.0.0.0
+Trigger: 2.0.0.0
+>> Run 9 (9.000011):
