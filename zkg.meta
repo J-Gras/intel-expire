@@ -4,3 +4,5 @@ credits = Jan Grashoefer <jan.grashoefer@gmail.com>
 tags = intel, expiration
 script_dir = scripts
 test_command = cd testing && btest -d
+depends =
+  zeek >=3.0

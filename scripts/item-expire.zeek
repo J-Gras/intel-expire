@@ -14,7 +14,7 @@ export {
 		## Expiration interval of the intelligence item. In case of multiple
 		## meta data instances, each instance will be treated separately.
 		## A negative value disables expiration. When the expiration of an
-		## item is detected, the hook :bro:id:`Intel::single_item_expired`
+		## item is detected, the hook :zeek:id:`Intel::single_item_expired`
 		## will be called. 
 		expire:     interval &default=default_per_item_expiration;
 

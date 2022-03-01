@@ -1,4 +1,4 @@
-# @TEST-EXEC: bro -r $TRACES/ticks.pcap item-expire %INPUT
+# @TEST-EXEC: zeek -r $TRACES/ticks.pcap item-expire %INPUT
 # @TEST-EXEC: cat intel.log > output
 # @TEST-EXEC: cat .stdout >> output
 # @TEST-EXEC: btest-diff output
@@ -19,6 +19,23 @@ redef enum Intel::Where += { SOMEWHERE };
 redef Intel::item_expiration = 3sec;
 redef Intel::default_per_item_expiration = 2sec;
 redef table_expire_interval = 1sec;
+
+# Wait for intel data to be loaded
+global intel_data = 0;
+
+event zeek_init()
+	{
+	suspend_processing();
+	}
+
+hook Intel::filter_item(item: Intel::Item)
+	{
+	++intel_data;
+	if ( intel_data == 3 )
+		continue_processing();
+	}
+
+# Test scenario
 
 global runs = 0;
 

@@ -4,11 +4,11 @@ This package provides an expiration mechanism for Zeek's intelligence framework 
 
 ## Installation
 
-The scripts are available as package for the [Bro/Zeek Package Manager](https://github.com/zeek/package-manager) and can be installed using the following command: `bro-pkg install intel-expire`
+The scripts are available as package for the [Zeek Package Manager](https://github.com/zeek/package-manager) and can be installed using the following command: `zkg install intel-expire`
 
 ## General Usage
 
-To enable per item expiration make sure the package is loaded: `bro-pkg load intel-expire`
+To enable per item expiration make sure the package is loaded: `zkg load intel-expire`
 
 Once enabled, intel items might specify a new meta data field `meta.expire`, which indicates the expiration interval in seconds. The following example shows an intel file that contains two IPs that are valid for different timespans.
 ```
@@ -18,7 +18,7 @@ Once enabled, intel items might specify a new meta data field `meta.expire`, whi
 ```
 Once an item expires, the hook `single_item_expired` is called. If all hook handlers are executed, the expiration timeout will be reset. Otherwise, if one of the handlers terminates using `break`, the item will be removed. This allows to make use of per item expiration for executing arbitrary actions.
 
-**NOTE:** As described above, item expiration will _not_ cause that the item is removed upon expiration by default. If you would like to remove expired items add the following to your `local.bro`
+**NOTE:** As described above, item expiration will _not_ cause that the item is removed upon expiration by default. If you would like to remove expired items add the following to your `local.zeek`
 ```
 @load packages/intel-expire/delete-expired
 ```
@@ -40,7 +40,7 @@ The following additional scripts can be used to further customize the behavior o
 
 ## Background
 
-The script `item-expire.bro` implements per item expiration and is loaded by default. Per item expiration is realized using two additional meta data fields:
+The script `item-expire.zeek` implements per item expiration and is loaded by default. Per item expiration is realized using two additional meta data fields:
 * `expire` defines the expiration interval in seconds
 * `start_time` represents the start timestamp of the expiration
 
